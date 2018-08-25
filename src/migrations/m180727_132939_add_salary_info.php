@@ -12,12 +12,12 @@ class m180727_132939_add_salary_info extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('salary_info', [
+        $this->createTable('salary_cost_info', [
             'cost_id' => $this->integer(),
             'rate' => $this->integer(),
             'hours' => $this->float(2),
         ]);
-        $this->addPrimaryKey('pk-salary_info-cost_id', 'salary_info', ['cost_id']);
+        $this->addPrimaryKey('pk-salary_cost_info-cost_id', 'salary_cost_info', ['cost_id']);
     }
 
     /**

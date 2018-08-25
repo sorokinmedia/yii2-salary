@@ -16,6 +16,7 @@ class m180727_132939_add_salary_type extends Migration
             'id' => $this->integer(),
             'name' => $this->string(255),
             'role' => $this->string(255),
+            'is_training' => $this->boolean()
         ]);
     }
 

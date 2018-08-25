@@ -1,23 +1,23 @@
 <?php
-namespace sorokinmedia\salary\entities\SalaryProject;
+namespace sorokinmedia\salary\entities\SalaryCostInfo;
 
 use sorokinmedia\ar_relations\RelationInterface;
-use sorokinmedia\salary\forms\SalaryProjectForm;
+use sorokinmedia\salary\entities\SalaryCost\AbstractSalaryCost;
+use sorokinmedia\salary\forms\SalaryCostInfoForm;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
 
 /**
- * This is the model class for table "salary_project".
+ * This is the model class for table "salary_cost_info".
  *
- * @property int $id
- * @property string $name
- * @property string $role
- * @property int $parent_id
+ * @property integer $cost_id
+ * @property integer $rate
+ * @property double $hours
  *
- * @property SalaryProjectForm $form
- * @property AbstractSalaryProject $parent
+ * @property AbstractSalaryCost $cost
+ * @property SalaryCostInfoForm $form
  */
-abstract class AbstractSalaryProject extends ActiveRecord implements SalaryProjectInterface, RelationInterface
+abstract class AbstractSalaryCostInfo extends ActiveRecord implements SalaryCostInfoInterface, RelationInterface
 {
     public $form;
 
@@ -26,7 +26,7 @@ abstract class AbstractSalaryProject extends ActiveRecord implements SalaryProje
      */
     public static function tableName()
     {
-        return 'salary_type';
+        return 'salary_cost_info';
     }
 
     /**
@@ -35,10 +35,10 @@ abstract class AbstractSalaryProject extends ActiveRecord implements SalaryProje
     public function rules()
     {
         return [
-            [['name', 'role'], 'required'],
-            [['name', 'role'], 'string', 'max' => 255],
-            [['parent_id'], 'integer'],
-            [['parent_id'], 'default', 'value' => 0],
+            [['cost_id', 'rate', 'hours'], 'required'],
+            [['cost_id', 'rate'], 'integer'],
+            [['hours'], 'number'],
+            [['cost_id'], 'exist', 'skipOnError' => true, 'targetClass' => AbstractSalaryCost::class, 'targetAttribute' => ['cost_id' => 'id']],
         ];
     }
 
@@ -48,19 +48,26 @@ abstract class AbstractSalaryProject extends ActiveRecord implements SalaryProje
     public function attributeLabels()
     {
         return [
-            'id' => \Yii::t('app', 'ID'),
-            'name' => \Yii::t('app', 'Название'),
-            'role' => \Yii::t('app', 'Роль'),
-            'parent_id' => \Yii::t('app', 'Родитель'),
+            'cost_id' => \Yii::t('app', 'Расход'),
+            'rate' => \Yii::t('app', 'Часовая ставка'),
+            'hours' => \Yii::t('app', 'Количество часов'),
         ];
     }
 
     /**
-     * AbstractSalaryProject constructor.
-     * @param array $config
-     * @param SalaryProjectForm|null $form
+     * @return \yii\db\ActiveQuery
      */
-    public function __construct(array $config = [], SalaryProjectForm $form = null)
+    public function getCost()
+    {
+        return $this->hasOne($this->__salaryCostClass, ['id' => 'cost_id']);
+    }
+
+    /**
+     * AbstractSalaryCostInfo constructor.
+     * @param array $config
+     * @param SalaryCostInfoForm|null $form
+     */
+    public function __construct(array $config = [], SalaryCostInfoForm $form = null)
     {
         if (!is_null($form)){
             $this->form = $form;
@@ -69,23 +76,13 @@ abstract class AbstractSalaryProject extends ActiveRecord implements SalaryProje
     }
 
     /**
-     * получить родителя
-     * @return mixed|null|AbstractSalaryProject
-     */
-    public function getParent()
-    {
-        return static::findOne($this->parent_id);
-    }
-
-    /**
      * получение данных из формы
      */
     public function getFromForm()
     {
         if (!is_null($this->form)){
-            $this->name = $this->form->name;
-            $this->role = $this->form->role;
-            $this->parent_id = $this->form->parent_id;
+            $this->rate = $this->form->rate;
+            $this->hours = $this->form->hours;
         }
     }
 

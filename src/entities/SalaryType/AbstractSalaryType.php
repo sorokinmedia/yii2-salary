@@ -12,6 +12,7 @@ use yii\db\Exception;
  * @property int $id
  * @property string $name
  * @property string $role
+ * @property boolean $is_training
  *
  * @property SalaryTypeForm $form
  */
@@ -35,6 +36,8 @@ abstract class AbstractSalaryType extends ActiveRecord implements SalaryTypeInte
         return [
             [['name', 'role'], 'required'],
             [['name', 'role'], 'string', 'max' => 255],
+            [['is_training'], 'boolean'],
+            [['is_training'], 'default', 'value' => false],
         ];
     }
 
@@ -47,6 +50,7 @@ abstract class AbstractSalaryType extends ActiveRecord implements SalaryTypeInte
             'id' => \Yii::t('app', 'ID'),
             'name' => \Yii::t('app', 'Название'),
             'role' => \Yii::t('app', 'Роль'),
+            'is_training' => \Yii::t('app', 'Обучение'),
         ];
     }
 
@@ -71,6 +75,7 @@ abstract class AbstractSalaryType extends ActiveRecord implements SalaryTypeInte
         if (!is_null($this->form)){
             $this->name = $this->form->name;
             $this->role = $this->form->role;
+            $this->is_training = $this->form->is_training;
         }
     }
 

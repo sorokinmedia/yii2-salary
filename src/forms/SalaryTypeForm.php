@@ -10,11 +10,13 @@ use yii\base\Model;
  *
  * @property string $name
  * @property string $role
+ * @property boolean $is_training
  */
 class SalaryTypeForm extends Model
 {
     public $name;
     public $role;
+    public $is_training;
 
     /**
      * SalaryTypeRole constructor.
@@ -26,6 +28,7 @@ class SalaryTypeForm extends Model
         if (!is_null($salaryType)){
             $this->name = $salaryType->name;
             $this->role = $salaryType->role;
+            $this->is_training = $salaryType->is_training;
         }
         parent::__construct($config);
     }
@@ -38,6 +41,8 @@ class SalaryTypeForm extends Model
         return [
             [['name', 'role'], 'required'],
             [['name', 'role'], 'string', 'max' => 255],
+            [['is_training'], 'boolean'],
+            [['is_training'], 'default', 'value' => false],
         ];
     }
 
@@ -49,6 +54,7 @@ class SalaryTypeForm extends Model
         return [
             'name' => \Yii::t('app', 'Название'),
             'role' => \Yii::t('app', 'Роль'),
+            'is_training' => \Yii::t('app', 'Обучение'),
         ];
     }
 }

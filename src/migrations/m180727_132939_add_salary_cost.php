@@ -14,6 +14,7 @@ class m180727_132939_add_salary_cost extends Migration
     {
         $this->createTable('salary_cost', [
             'id' => $this->primaryKey(),
+            'project_id' => $this->integer(),
             'type_id' => $this->integer(),
             'user_id' => $this->integer(),
             'name' => $this->string(255),

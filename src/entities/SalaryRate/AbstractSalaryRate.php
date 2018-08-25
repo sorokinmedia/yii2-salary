@@ -3,6 +3,7 @@ namespace sorokinmedia\salary\entities\SalaryRate;
 
 use sorokinmedia\ar_relations\RelationInterface;
 use sorokinmedia\salary\forms\SalaryRateForm;
+use sorokinmedia\user\entities\User\AbstractUser;
 use yii\db\ActiveRecord;
 use yii\db\Exception;
 
@@ -13,7 +14,7 @@ use yii\db\Exception;
  * @property integer $rate
  * @property integer $rate_training
  *
- * @property UserInterface $user
+ * @property AbstractUser $user
  * @property SalaryRateForm $form
  */
 abstract class AbstractSalaryRate extends ActiveRecord implements SalaryRateInterface, RelationInterface
