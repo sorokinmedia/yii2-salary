@@ -74,7 +74,7 @@ abstract class AbstractSalaryProject extends ActiveRecord implements SalaryProje
      */
     public function getParent()
     {
-        return static::findOne($this->parent_id);
+        return (!is_null($this->parent_id) && $this->parent_id != 0) ? static::findOne($this->parent_id) : null;
     }
 
     /**
