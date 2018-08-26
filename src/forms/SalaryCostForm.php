@@ -51,7 +51,7 @@ class SalaryCostForm extends Model
     {
         return [
             [['project_id',  'type_id', 'user_id'], 'integer'],
-            [['hours'], 'float'],
+            [['hours'], 'number'],
             [['name'], 'string', 'max' => 255],
         ];
     }
