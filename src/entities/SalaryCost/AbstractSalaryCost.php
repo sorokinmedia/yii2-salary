@@ -186,7 +186,7 @@ abstract class AbstractSalaryCost extends ActiveRecord implements SalaryCostInte
      */
     public function getInfo()
     {
-        return $this->hasOne($this->__salaryInfoClass, ['cost_id' => 'id']);
+        return $this->hasOne($this->__salaryCostInfoClass, ['cost_id' => 'id']);
     }
 
     /**

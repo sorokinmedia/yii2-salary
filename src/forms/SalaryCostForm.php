@@ -36,7 +36,9 @@ class SalaryCostForm extends Model
             $this->type_id = $salaryCost->type_id;
             $this->user_id = $salaryCost->user_id;
             $this->name = $salaryCost->name;
-            $this->hours = $salaryCost->info->hours;
+            if (!is_null($salaryCost->info)){
+                $this->hours = $salaryCost->info->hours;
+            }
             $this->created_at = $salaryCost->created_at;
         }
         parent::__construct($config);
