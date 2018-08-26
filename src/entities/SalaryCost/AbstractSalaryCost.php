@@ -122,7 +122,7 @@ abstract class AbstractSalaryCost extends ActiveRecord implements SalaryCostInte
             }
             $this->sum = $this->form->hours * $rate;
             $this->created_at = strtotime('today noon');
-            if ($this->form->created_at) {
+            if (!is_null($this->form->created_at) && $this->form->created_at != '') {
                 $this->created_at = strtotime($this->form->created_at . ' 12:00:00');
             }
         }
