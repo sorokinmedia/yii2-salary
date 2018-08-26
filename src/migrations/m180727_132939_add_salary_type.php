@@ -3,7 +3,7 @@ use yii\db\Migration;
 
 /**
  * Class m180727_132939_add_salary_type
- * use rbac migration as php yii migrate --migrationPath=@sorokinmedia/salary/migrations/
+ * use migration as sudo php yii migrate --migrationPath=@sorokinmedia/salary/migrations/
  */
 class m180727_132939_add_salary_type extends Migration
 {
@@ -13,7 +13,7 @@ class m180727_132939_add_salary_type extends Migration
     public function safeUp()
     {
         $this->createTable('salary_type', [
-            'id' => $this->integer(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'role' => $this->string(255),
             'is_training' => $this->boolean()

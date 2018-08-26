@@ -3,7 +3,7 @@ use yii\db\Migration;
 
 /**
  * Class m180727_132939_add_salary_rate
- * use rbac migration as php yii migrate --migrationPath=@sorokinmedia/salary/migrations/
+ * use migration as sudo php yii migrate --migrationPath=@sorokinmedia/salary/migrations/
  */
 class m180727_132939_add_salary_rate extends Migration
 {
