@@ -80,6 +80,7 @@ abstract class AbstractSalaryRate extends ActiveRecord implements SalaryRateInte
     public function getFromForm()
     {
         if (!is_null($this->form)){
+            $this->user_id = $this->form->user_id;
             $this->rate = $this->form->rate;
             $this->rate_training = $this->form->rate_training;
         }
