@@ -47,9 +47,9 @@ abstract class AbstractSalaryRate extends ActiveRecord implements SalaryRateInte
     public function attributeLabels()
     {
         return [
-            'user_id' => \Yii::t('app', 'User ID'),
-            'rate' => \Yii::t('app', 'Rate'),
-            'rate_training' => \Yii::t('app', 'Rate Training'),
+            'user_id' => \Yii::t('app', 'Исполнитель'),
+            'rate' => \Yii::t('app', 'Часовая ставка'),
+            'rate_training' => \Yii::t('app', 'Часовая ставка обучения'),
         ];
     }
 
