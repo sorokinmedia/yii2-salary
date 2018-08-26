@@ -26,7 +26,7 @@ abstract class AbstractSalaryProject extends ActiveRecord implements SalaryProje
      */
     public static function tableName()
     {
-        return 'salary_type';
+        return 'salary_project';
     }
 
     /**
