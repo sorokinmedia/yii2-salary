@@ -14,7 +14,6 @@ use yii\base\Model;
  * @property string $name
  * @property float $hours
  * @property string $date
- * @property int $created_at
  */
 class SalaryCostForm extends Model
 {
@@ -40,10 +39,7 @@ class SalaryCostForm extends Model
             if (!is_null($salaryCost->info)){
                 $this->hours = $salaryCost->info->hours;
             }
-            if (!is_null($salaryCost->created_at)){
-                $this->created_at = $salaryCost->created_at;
-                $this->date = strtotime($salaryCost->created_at);
-            }
+            $this->date = strtotime($salaryCost->created_at);
         }
         parent::__construct($config);
     }
