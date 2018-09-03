@@ -13,7 +13,8 @@ use yii\base\Model;
  * @property int $user_id
  * @property string $name
  * @property float $hours
- * @property string|int $created_at
+ * @property string $date
+ * @property int $created_at
  */
 class SalaryCostForm extends Model
 {
@@ -22,7 +23,7 @@ class SalaryCostForm extends Model
     public $user_id;
     public $name;
     public $hours;
-    public $created_at;
+    public $date;
 
     /**
      * SalaryCostInfoForm constructor.
@@ -39,8 +40,9 @@ class SalaryCostForm extends Model
             if (!is_null($salaryCost->info)){
                 $this->hours = $salaryCost->info->hours;
             }
-            if (!is_null($salaryCost->created_at) && $salaryCost->created_at != ''){
+            if (!is_null($salaryCost->created_at)){
                 $this->created_at = $salaryCost->created_at;
+                $this->date = strtotime($salaryCost->created_at);
             }
         }
         parent::__construct($config);
@@ -55,6 +57,8 @@ class SalaryCostForm extends Model
             [['project_id',  'type_id', 'user_id'], 'integer'],
             [['hours'], 'number'],
             [['name'], 'string', 'max' => 255],
+            [['date'], 'string'],
+            [['project_id', 'type_id', 'user_id', 'hours', 'name', 'date'], 'required']
         ];
     }
 
@@ -69,6 +73,7 @@ class SalaryCostForm extends Model
             'user_id' => \Yii::t('app', 'Исполнитель'),
             'name' => \Yii::t('app', 'Название'),
             'hours' => \Yii::t('app', 'Количество часов'),
+            'date' => \Yii::t('app', 'Дата выполнения работы')
         ];
     }
 }
