@@ -39,7 +39,7 @@ class SalaryCostForm extends Model
             if (!is_null($salaryCost->info)){
                 $this->hours = $salaryCost->info->hours;
             }
-            $this->date = strtotime($salaryCost->created_at);
+            $this->date = date('d-m-Y', $salaryCost->created_at);
         }
         parent::__construct($config);
     }
