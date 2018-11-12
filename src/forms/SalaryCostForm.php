@@ -74,7 +74,7 @@ class SalaryCostForm extends Model
             'project_id' => \Yii::t('app', 'Проект'),
             'type_id' => \Yii::t('app', 'Тип работ'),
             'user_id' => \Yii::t('app', 'Исполнитель'),
-            'name' => \Yii::t('app', 'Название'),
+            'name' => \Yii::t('app', 'Описание работы'),
             'jira_id' => \Yii::t('app', 'Номер задачи в JIRA'),
             'hours' => \Yii::t('app', 'Количество часов'),
             'date' => \Yii::t('app', 'Дата выполнения работы')

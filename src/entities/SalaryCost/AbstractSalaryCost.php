@@ -87,7 +87,7 @@ abstract class AbstractSalaryCost extends ActiveRecord implements SalaryCostInte
             'project_id' => \Yii::t('app', 'Проект'),
             'type_id' => \Yii::t('app', 'Тип работ'),
             'user_id' => \Yii::t('app', 'Исполнитель'),
-            'name' => \Yii::t('app', 'Название'),
+            'name' => \Yii::t('app', 'Описание работы'),
             'jira_id' => \Yii::t('app', 'Номер задачи в JIRA'),
             'sum' => \Yii::t('app', 'Сумма'),
             'created_at' => \Yii::t('app', 'Добавлено'),
