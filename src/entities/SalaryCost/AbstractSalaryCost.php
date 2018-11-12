@@ -22,6 +22,7 @@ use yii\db\Exception;
  * @property int $type_id
  * @property int $user_id
  * @property string $name
+ * @property string $jira_id
  * @property double $sum
  * @property integer $created_at
  * @property integer $updated_at
@@ -69,6 +70,7 @@ abstract class AbstractSalaryCost extends ActiveRecord implements SalaryCostInte
             [['project_id',  'type_id', 'user_id'], 'integer'],
             [['sum'], 'number'],
             [['name'], 'string', 'max' => 255],
+            [['jira_id'], 'string', 'max' => 50],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => AbstractSalaryProject::class, 'targetAttribute' => ['project_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => AbstractSalaryType::class, 'targetAttribute' => ['type_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => AbstractUser::class, 'targetAttribute' => ['user_id' => 'id']],
@@ -86,6 +88,7 @@ abstract class AbstractSalaryCost extends ActiveRecord implements SalaryCostInte
             'type_id' => \Yii::t('app', 'Тип работ'),
             'user_id' => \Yii::t('app', 'Исполнитель'),
             'name' => \Yii::t('app', 'Название'),
+            'jira_id' => \Yii::t('app', 'Номер задачи в JIRA'),
             'sum' => \Yii::t('app', 'Сумма'),
             'created_at' => \Yii::t('app', 'Добавлено'),
             'updated_at' => \Yii::t('app', 'Обновлено'),
@@ -116,6 +119,7 @@ abstract class AbstractSalaryCost extends ActiveRecord implements SalaryCostInte
             $this->type_id = $this->form->type_id;
             $this->user_id = $this->form->user_id;
             $this->name = $this->form->name;
+            $this->jira_id = $this->form->jira_id;
             $rate = $this->rate->rate;
             if ($this->type->is_training === true) {
                 $rate = $this->rate->rate_training;

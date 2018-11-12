@@ -18,6 +18,7 @@ class m180727_132939_add_salary_cost extends Migration
             'type_id' => $this->integer(),
             'user_id' => $this->integer(),
             'name' => $this->string(255),
+            'jira_id' => $this->string(50),
             'sum' => $this->money(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
