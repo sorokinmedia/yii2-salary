@@ -119,7 +119,9 @@ abstract class AbstractSalaryCost extends ActiveRecord implements SalaryCostInte
             $this->type_id = $this->form->type_id;
             $this->user_id = $this->form->user_id;
             $this->name = $this->form->name;
-            $this->jira_id = $this->form->jira_id;
+            if ($this->form->jira_id != '' && !is_null($this->form->jira_id)){
+                $this->jira_id = $this->form->jira_id;
+            }
             $rate = $this->rate->rate;
             if ($this->type->is_training === true) {
                 $rate = $this->rate->rate_training;
